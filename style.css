@@ -37,7 +37,7 @@ margin-left: 30px;
 #list li {
     border-radius: 15px;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-content: center;
     cursor: pointer;
     transition: background-color 0.2s;
@@ -66,4 +66,28 @@ margin-left: 30px;
 /* Hover sur bouton supprimer */
 #list li button:hover {
     background-color: #ff3b3b;
+}
+
+/* Style du bouton d'ajout */
+#button {
+    background-color: #00bcd4;  /* couleur bleu clair */
+    color: white;               /* texte blanc */
+    border: none;               /* supprime la bordure par défaut */
+    padding: 5px 15px;         /* espace interne */
+    border-radius: 5px;         /* coins arrondis */
+    cursor: pointer;            /* curseur pointeur */
+    font-size: 16px;            /* taille du texte */
+    transition: background-color 0.2s, transform 0.1s; /* animation */
+}
+
+/* Hover pour effet dynamique */
+#button:hover {
+    background-color: #0097a7; /* bleu plus foncé */
+    transform: scale(1.05);    /* léger zoom */
+}
+
+/* Focus pour accessibilité clavier */
+#button:focus {
+    outline: none;
+    box-shadow: 0 0 5px #00bcd4;
 }
