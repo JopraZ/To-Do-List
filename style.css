@@ -1,0 +1,30 @@
+.container {
+    max-width: 400px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: lightgoldenrodyellow;
+    margin-left: 70px;
+    margin-top: 100px;
+}
+
+body {
+    background-color: aliceblue;
+}
+
+h1 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 50px;
+}
+
+h2 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 30px;
+}
+
+#taskInput {
+font-size: 16px;
+margin-left: 30px;
+}
