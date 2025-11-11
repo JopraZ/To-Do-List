@@ -52,22 +52,6 @@ margin-left: 30px;
     background-color: rgb(200, 231, 233);
 }
 
-#list li button {
-    background-color: #ff6b6b;
-    border: none;
-    color: white;
-    padding: 5px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 10px;
-    transition: background-color 0.2s;
-}
-
-/* Hover sur bouton supprimer */
-#list li button:hover {
-    background-color: #ff3b3b;
-}
-
 /* Style du bouton d'ajout */
 #button {
     background-color: #00bcd4;  /* couleur bleu clair */
