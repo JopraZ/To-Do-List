@@ -1,43 +1,87 @@
-let taskInput = document.getElementById("taskInput");
-let button = document.getElementById("button");
-let list = document.getElementById("list");
+// Sélections
+const taskInput = document.getElementById("taskInput");
+const button = document.getElementById("button");
+const list = document.getElementById("list");
 
-function ajouterUneTache() {
-    let task = taskInput.value.trim();
-    if (task !== "") {
-        // Créer l'élément li
-        let listItem = document.createElement("li");
-        listItem.textContent = task;
+// --- LocalStorage helpers ---
+function loadTasks() {
+    return JSON.parse(localStorage.getItem("tasks")) || [];
+}
 
-        // Listener pour cocher/décocher
-        listItem.addEventListener("click", function() {
-            listItem.classList.toggle("completed");
+function saveTasks(tasks) {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+
+// --- Ajouter une tâche ---
+function ajouterTache() {
+    const text = taskInput.value.trim();
+    if (!text) return;
+
+    const taskObj = { text: text, done: false };
+
+    renderTask(taskObj);
+
+    const tasks = loadTasks();
+    tasks.push(taskObj);
+    saveTasks(tasks);
+
+    taskInput.value = "";
+}
+
+// --- Créer et afficher une tâche dans le DOM ---
+function renderTask(taskObj) {
+    const li = document.createElement("li");
+
+    const span = document.createElement("span");
+    span.textContent = taskObj.text;
+    li.appendChild(span);
+
+    if (taskObj.done) li.classList.add("completed");
+
+    const deleteButton = document.createElement("button");
+    deleteButton.textContent = "supprimer";
+    li.appendChild(deleteButton);
+
+    // --- Coche / décoche la tâche ---
+    li.addEventListener("click", function(e) {
+        // Ignorer si on clique sur le bouton supprimer
+        if (e.target === deleteButton) return;
+
+        li.classList.toggle("completed");
+
+        let tasks = loadTasks();
+        tasks = tasks.map(t => {
+            if (t.text === taskObj.text) t.done = !t.done;
+            return t;
         });
+        saveTasks(tasks);
+    });
 
-        // Ajouter le bouton supprimer
-        let deleteButton = document.createElement("button");
-        deleteButton.textContent = "supprimer";
+    // --- Supprimer la tâche ---
+    deleteButton.addEventListener("click", function(e) {
+        e.stopPropagation();
+        list.removeChild(li);
 
-        // Supprimer sans déclencher le toggle
-        deleteButton.addEventListener("click", function(e){
-            e.stopPropagation(); // empêche le clic sur li
-            list.removeChild(listItem);
-        });
+        let tasks = loadTasks();
+        tasks = tasks.filter(t => t.text !== taskObj.text);
+        saveTasks(tasks);
+    });
 
-        listItem.appendChild(deleteButton);
-        list.appendChild(listItem);
+    list.appendChild(li);
+}
 
-        // Réinitialiser l'input
-        taskInput.value = "";
-    }
-};
-
-button.addEventListener("click", ajouterUneTache);
+// --- Listeners ---
+button.addEventListener("click", ajouterTache);
 
 taskInput.addEventListener("keydown", function(e) {
     if (e.key === "Enter") {
         e.preventDefault();
-        ajouterUneTache();
-        }
+        ajouterTache();
+    }
 });
 
+// --- Charger les tâches au démarrage ---
+window.addEventListener("load", function() {
+    const tasks = loadTasks();
+    tasks.forEach(renderTask);
+});

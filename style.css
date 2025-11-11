@@ -67,3 +67,26 @@ margin-left: 30px;
 #list li button:hover {
     background-color: #ff3b3b;
 }
+/* Bouton d'ajout */
+#button {
+    background-color: #00bcd4; /* bleu clair */
+    color: white;              /* texte blanc */
+    border: none;              /* pas de bordure */
+    padding: 10px 20px;        /* espace interne */
+    border-radius: 5px;        /* coins arrondis */
+    cursor: pointer;           /* curseur pointeur */
+    font-size: 16px;           /* taille du texte */
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+/* Effet au survol */
+#button:hover {
+    background-color: #0097a7; /* bleu plus foncé */
+    transform: scale(1.05);    /* léger zoom */
+}
+
+/* Focus clavier */
+#button:focus {
+    outline: none;
+    box-shadow: 0 0 5px #00bcd4;
+}
