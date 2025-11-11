@@ -1,6 +1,6 @@
 .container {
     max-width: 400px;
-    height: 500px;
+    height: 800px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -32,4 +32,38 @@ margin-left: 30px;
     text-decoration: line-through;
     color: gray;
     opacity: 0.7;
+}
+
+#list li {
+    border-radius: 15px;
+    display: flex;
+    justify-content: space-evenly;
+    align-content: center;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-bottom: 20px;
+    margin-right: 35px;
+    padding: 5px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 20px;
+}
+
+#list li:hover {
+    background-color: rgb(200, 231, 233);
+}
+
+#list li button {
+    background-color: #ff6b6b;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 10px;
+    transition: background-color 0.2s;
+}
+
+/* Hover sur bouton supprimer */
+#list li button:hover {
+    background-color: #ff3b3b;
 }
